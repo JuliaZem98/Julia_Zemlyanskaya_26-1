@@ -1,0 +1,52 @@
+{% extends 'layouts/index.html' %}
+
+{% block content %}
+    <style type="text/css">
+        .post_block {
+            width: 80%;
+            margin-left: 10%;
+            padding: 10px;
+        }
+        .dates {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+    <div class="post_block">
+        <div class="image">
+
+        </div>
+        <div class="info">
+            <h1>{{ post.title }}</h1>
+            <h4>{{ post.description }}</h4>
+            <h4>Rate: {{ post.rate }}</h4>
+            <div class="dates">
+                <p>{{ post.created_date }}</p>
+                <p>{{ post.modified_date }}</p>
+            </div>
+        </div>
+    </div>
+
+  <h1>{{ product.name }}</h1>
+  <p>{{ product.description }}</p>
+  <p>Price: {{ product.price }} USD</p>
+
+  {% if product.reviews.all %}
+    <h2>Reviews:</h2>
+    {% for review in product.reviews.all %}
+      <div class="review">
+        <h3>{{ review.author }}</h3>
+        <p>{{ review.content }}</p>
+        <p>Created: {{ review.created_date }}</p>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <a href="{% url 'products' %}">Back to products</a>
+{% endblock %}
+<h1>{{ product.name }}</h1>
+<p>{{ product.description }}</p>
+{% if product.image %}
+  <img src="{{ product.image.url }}" alt="{{ product.name }} image">
+{% endif %}
+<p>Price: {{ product.price }} USD</p>
